@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResidentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return redirect()->action([ArticleController::class, 'index']);
+    // return view('dashboard');
+    // return redirect()->action([ArticleController::class, 'index']);
+    return redirect("/dashboard");
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('/article', ArticleController::class);
+Route::resource('article', ArticleController::class);
+Route::resource('resident', ResidentController::class)->middleware('auth'); /*->only(['index', 'edit', 'update']); /*->except('create')->missing(function (Request $request) {
+return Redirect::route('resident.index');
+});*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -23,6 +23,6 @@ class TableList extends Component
     public function render(): View|Closure|string
     {
         // return view('components.table-list', ['list' => Article::all()->sortBy('sort')]);
-        return view('components.table-list', ['list' => Article::where('id', '>', 0)->orderBy('sort')->paginate(4)]);
+        return view('components.table-list', ['list' => Article::where('id', '>', 0)->orderBy('sort')->paginate(5)]);
     }
 }
