@@ -51,4 +51,6 @@ class ResidentRepository
             $user->save();
         }
     }
+
+    // public function get
 }
