@@ -6,12 +6,9 @@ TO READ
 https://quickstarts.postman.com/guide/php-laravel-API/index.html?index=..%2F..index#0
 */
 
+use App\Http\Controllers\SanctumApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Hash;
-use App\Repositories\ResidentRepository;
-use App\Models\User;
-use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,24 +21,9 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
-Route::post('/sanctum/token', function (Request $request) { //, ResidentRepository $repo
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-        'device_name' => 'required'
-    ]);
+Route::post('/sanctum/token', [SanctumApiController::class, 'login']);
 
-    $user = User::where('email', $request->email)->first();
-
-    if (!$user || !Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
-
-    return $user->createToken($request->device_name)->plainTextToken;
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/user', [SanctumApiController::class, 'getUser']); /*function (Request $request) {
+return $request->user();
+});*/
+Route::middleware('auth:sanctum')->patch('/user', [SanctumApiController::class, 'updateUser']);

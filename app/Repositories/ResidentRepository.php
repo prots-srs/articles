@@ -52,5 +52,13 @@ class ResidentRepository
         }
     }
 
-    // public function get
+    public function updateUserSimple($id, $data)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->update($data);
+            $user->save();
+        }
+
+    }
 }
