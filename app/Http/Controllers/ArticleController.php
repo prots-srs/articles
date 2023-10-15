@@ -23,7 +23,7 @@ class ArticleController extends Controller
     {
         return response()->json(Article::where('publish', true)->orderBy('sort')->get()->map(function (Article $article) {
             if (isset($article->picture)) {
-                $article->picture = env('APP_URL') . Storage::url($article->picture);
+                $article->picture = config('app.url') . Storage::url($article->picture);
             }
             return $article;
         })->toArray());
@@ -62,7 +62,7 @@ class ArticleController extends Controller
             return redirect(route('article.index'));
         }
         if (isset($article->picture)) {
-            $article->picture = env('APP_URL') . Storage::url($article->picture);
+            $article->picture = config('app.url') . Storage::url($article->picture);
         }
 
         return response()->json($article->toArray());
