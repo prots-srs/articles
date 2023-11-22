@@ -27,9 +27,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('article', ArticleController::class);
-Route::resource('resident', ResidentController::class)->middleware('auth'); /*->only(['index', 'edit', 'update']); /*->except('create')->missing(function (Request $request) {
-return Redirect::route('resident.index');
-});*/
+Route::resource('resident', ResidentController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -7,6 +7,7 @@ https://quickstarts.postman.com/guide/php-laravel-API/index.html?index=..%2F..in
 */
 
 use App\Http\Controllers\SanctumApiController;
+use App\Http\Controllers\ContentAccessApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/sanctum/token', [SanctumApiController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/access', ContentAccessApiController::class);
 
-Route::middleware('auth:sanctum')->get('/user', [SanctumApiController::class, 'getUser']); /*function (Request $request) {
-return $request->user();
-});*/
+Route::middleware('auth:sanctum')->get('/user', [SanctumApiController::class, 'getUser']);
 Route::middleware('auth:sanctum')->patch('/user', [SanctumApiController::class, 'updateUser']);
