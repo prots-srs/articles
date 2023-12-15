@@ -15,11 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('article.create')" :active="request()->routeIs('article.create')">
-                        {{ __('Article create') }}
+                    <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
+                        {{ __('Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="route('resident.index')" :active="request()->routeIs('resident.index')">
-                        {{ __('Resident') }}
+                        {{ __('Residents') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -84,11 +84,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('article.create')" :active="request()->routeIs('article.create')">
-                {{ __('Article create') }}
+            <x-responsive-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
+                {{ __('Articles') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('resident.index')" :active="request()->routeIs('resident.index')">
-                {{ __('Resident') }}
+                {{ __('Residents') }}
             </x-responsive-nav-link>
         </div>
 

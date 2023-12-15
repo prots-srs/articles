@@ -82,7 +82,7 @@ border-1 border-rose-600
                                 </label>
                                 <x-input-error :messages="$errors->get('description')" class="mt-1" />
                                 <x-primary-button class="mt-4">Update</x-primary-button>
-                                <x-dropdown-link :href="route('article.create')">Close</x-dropdown-link>
+                                <x-dropdown-link :href="route('article.index')">Close</x-dropdown-link>
                             </form>
                         </div>
                     </div>
